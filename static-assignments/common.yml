@@ -1,6 +1,6 @@
 ---
-- name: update web, nfs and db servers
-  hosts: webservers, nfs, db
+- name: update web, and nfs servers
+  hosts: webservers, nfs, 
   become: yes
   tasks:
     - name: ensure wireshark is at the latest version
@@ -8,8 +8,8 @@
         name: wireshark
         state: latest
 
-- name: update LB server
-  hosts: lb
+- name: update LB and db server
+  hosts: lb, db
   become: yes
   tasks:
     - name: Update apt repo
