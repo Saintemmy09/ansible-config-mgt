@@ -14,13 +14,17 @@
 - name: clone a repo
   become: true
   ansible.builtin.git:
-    repo: https://github.com/Saintemmy09/Devops-tooling-website-on-aws.git
-    dest: /var/www/html
+    repo: https://github.com/StegTechHub/tooling.git
+    dest: /var/www/tooling-src
     force: yes
 
 - name: copy html content to one level up
   become: true
-  command: cp -r /var/www/html/html/ /var/www/
+  ansible.builtin.copy:
+    src: /var/www/tooling-src/html/
+    dest: /var/www/html
+    remote_src: yes
+    mode: preserve
 
 - name: Start service httpd, if not started
   become: true
@@ -28,9 +32,4 @@
     name: httpd
     state: started
 
-- name: recursively remove /var/www/html/html/ directory
-  become: true
-  ansible.builtin.file:
-    path: /var/www/html/html
-    state: absent
 
