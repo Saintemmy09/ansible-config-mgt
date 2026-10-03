@@ -1,8 +1,12 @@
 ---
 uat-webservers:
   hosts:
-    172.31.79.168:
+    172.31.64.220:
       ansible_ssh_user: ec2-user
-    172.31.69.171:
+    172.31.64.236:
       ansible_ssh_user: ec2-user
 
+lb:
+  hosts:
+    172.31.78.230:
+      ansible_ssh_user: ubuntu
